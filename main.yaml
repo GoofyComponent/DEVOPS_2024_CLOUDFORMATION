@@ -1,0 +1,34 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  NodeServerInstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-0afcfd2d204c252d5
+      InstanceType: t1.micro
+      Tags:
+        - Key: Name
+          Value: FrontEnd-cloudformation
+        - Key: Environment
+          Value: Dev
+        - Key: Hetic
+          Value: Groupe4
+  S3NodeBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: test-bucket-groupe4-cloudformation
+      Tags:
+        - Key: Name
+          Value: My bucket cloudformation
+        - Key: Environment
+          Value: Dev
+        - Key: Hetic
+          Value: Groupe4
+  Budget:
+    Type: AWS::Budgets::Budget
+    Properties:
+      Budget:
+        TimeUnit: MONTHLY
+        BudgetType: COST
+        BudgetLimit:
+          Amount: 1
+          Unit: USD
